@@ -12,13 +12,14 @@ import os
 # 1️⃣ LOAD DATASET FROM GITHUB
 # -------------------------------
 
-DATA_URL = "https://raw.githubusercontent.com/<YOUR_USERNAME>/<YOUR_REPO>/main/ecommerce_sales_dataset.csv"
+DATA_URL = "https://raw.githubusercontent.com/Tanish-analyst/ecommerce-analytics-agent/main/ecommerce_sales_dataset.xlsx"
 
 @st.cache_data
 def load_data():
-    df = pd.read_csv(DATA_URL)
+    df = pd.read_excel(DATA_URL)
     df["order_date"] = pd.to_datetime(df["order_date"])
     return df
+
 
 df = load_data()
 st.success("Dataset loaded successfully!")
