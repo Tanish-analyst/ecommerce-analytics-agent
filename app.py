@@ -124,7 +124,7 @@ VERY IMPORTANT RULES:
    - df['order_date'].dt.month
 5. Output MUST be ONLY raw Pandas code.
 6. NO explanations, NO markdown, NO text.
-7. Do NOT wrap the result in JSON or {"code": "..."}.
+7. Do NOT wrap the result in JSON or in any dict-like structure such as code: "...".
 8. Multi-line Python code is allowed.
 9. The output should be directly executable with exec().
 
