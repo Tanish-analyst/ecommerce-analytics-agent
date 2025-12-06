@@ -94,36 +94,43 @@ def model_node(state: AgentState) -> AgentState:
 
     # Step 1: Ask LLM to generate Pandas code
     prompt = f"""
-You are a senior data analyst. Generate ONLY Pandas code to answer the user's question.
+You are a senior data analyst. Your job is to write ONLY valid Pandas code that answers the user's question.
+
+DATAFRAME NAME → df  
+
+DATASET SCHEMA:
+- order_id (int): unique order ID
+- order_date (datetime): purchase date
+- customer_id (int)
+- product_id (int)
+- product_name (str)
+- category (str): examples include "Electronics", "Fashion/Home", "Clothing", "Home", etc.
+- quantity (int): quantity purchased
+- price (float): price per unit
+- discount (int): discount percent
+- revenue (float): final revenue AFTER discount (already calculated)
+- cost (float)
+- profit (float): revenue – cost
+- payment_method (str): e.g., "Credit Card", "UPI", "COD", etc.
+- city (str): e.g., Delhi, Mumbai, Bangalore, Chennai
+- stock_left (int)
+
+VERY IMPORTANT RULES:
+1. Use df exactly as it is.
+2. Use df['revenue'] directly — it already includes discount.
+3. Use df['profit'] directly.
+4. Filter dates using:
+   - df['order_date'].dt.year
+   - df['order_date'].dt.month
+5. Output MUST be ONLY raw Pandas code.
+6. NO explanations, NO markdown, NO text.
+7. Do NOT wrap the result in JSON or {"code": "..."}.
+8. Multi-line Python code is allowed.
+9. The output should be directly executable with exec().
 
 USER QUESTION:
 "{user_query}"
 
-DATAFRAME NAME: df  
-
-SCHEMA:
-- order_id
-- order_date
-- customer_id
-- product_id
-- product_name
-- category
-- quantity
-- price
-- discount
-- revenue
-- cost
-- profit
-- payment_method
-- city
-- stock_left
-
-RULES:
-1. Use df directly.
-2. Use df['revenue'] directly (it already includes discount).
-3. Filter dates with df['order_date'].dt.year / month.
-4. Output ONLY valid Pandas code.
-5. No markdown. No explanations. Only code.
 """
 
     response = llm_basic.invoke(prompt)
