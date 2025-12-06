@@ -27,8 +27,9 @@ st.markdown(
     <style>
     /* Global background */
     .stApp {
-        background: radial-gradient(circle at top left, #f9fafb 0, #eef2ff 40%, #f9fafb 100%);
+        background: #000000;
         font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        color: #ffffff;
     }
 
     /* Center the main block a bit more and widen it */
@@ -42,43 +43,54 @@ st.markdown(
     .app-header {
         padding: 1.25rem 1.5rem;
         border-radius: 18px;
-        background: linear-gradient(120deg, #1d4ed8, #4f46e5);
+        background: #1a1a1a;
         color: white;
-        box-shadow: 0 18px 45px rgba(15, 23, 42, 0.35);
+        box-shadow: 0 18px 45px rgba(255, 255, 255, 0.1);
         margin-bottom: 1.5rem;
+        border: 1px solid #333333;
     }
 
     .app-header-title {
         font-size: 1.9rem;
         font-weight: 700;
         margin-bottom: 0.25rem;
+        color: #ffffff;
     }
 
     .app-header-subtitle {
         font-size: 0.95rem;
         opacity: 0.9;
+        color: #ffffff;
     }
 
     /* Info cards */
     .info-card {
-        background: rgba(255, 255, 255, 0.9);
+        background: #1a1a1a;
         border-radius: 16px;
         padding: 1rem 1.2rem;
-        border: 1px solid rgba(148, 163, 184, 0.25);
-        box-shadow: 0 12px 30px rgba(15, 23, 42, 0.12);
+        border: 1px solid #333333;
+        box-shadow: 0 12px 30px rgba(255, 255, 255, 0.05);
         backdrop-filter: blur(12px);
     }
 
     .info-card-title {
         font-size: 0.9rem;
         font-weight: 600;
-        color: #0f172a;
+        color: #ffffff;
         margin-bottom: 0.4rem;
     }
 
     .info-card-body {
         font-size: 0.85rem;
-        color: #475569;
+        color: #ffffff;
+    }
+
+    .info-card-body ul {
+        color: #ffffff;
+    }
+
+    .info-card-body li {
+        color: #ffffff;
     }
 
     /* Section title */
@@ -87,7 +99,7 @@ st.markdown(
         font-weight: 600;
         text-transform: uppercase;
         letter-spacing: 0.08em;
-        color: #6b7280;
+        color: #ffffff;
         margin-top: 1.2rem;
         margin-bottom: 0.4rem;
     }
@@ -95,17 +107,17 @@ st.markdown(
     /* Answer card */
     .answer-card {
         margin-top: 1rem;
-        background: #ffffff;
+        background: #1a1a1a;
         border-radius: 18px;
         padding: 1.2rem 1.3rem;
-        border: 1px solid rgba(148, 163, 184, 0.35);
-        box-shadow: 0 12px 32px rgba(15, 23, 42, 0.16);
+        border: 1px solid #333333;
+        box-shadow: 0 12px 32px rgba(255, 255, 255, 0.05);
     }
 
     .answer-card-title {
         font-size: 1rem;
         font-weight: 600;
-        color: #0f172a;
+        color: #ffffff;
         margin-bottom: 0.6rem;
         display: flex;
         align-items: center;
@@ -114,7 +126,7 @@ st.markdown(
 
     .answer-card-body {
         font-size: 0.95rem;
-        color: #111827;
+        color: #ffffff;
         line-height: 1.6;
         white-space: pre-wrap;
     }
@@ -122,14 +134,16 @@ st.markdown(
     /* Text input styling */
     .stTextInput > div > div > input {
         border-radius: 999px !important;
-        border: 1px solid rgba(148, 163, 184, 0.8) !important;
+        border: 1px solid #333333 !important;
         padding: 0.6rem 1.2rem !important;
         box-shadow: none !important;
+        background: #1a1a1a !important;
+        color: #ffffff !important;
     }
 
     .stTextInput > div > div > input:focus {
-        border-color: #4f46e5 !important;
-        box-shadow: 0 0 0 1px rgba(79, 70, 229, 0.5) !important;
+        border-color: #666666 !important;
+        box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.3) !important;
     }
 
     /* Button styling */
@@ -137,30 +151,58 @@ st.markdown(
         border-radius: 999px;
         padding: 0.4rem 1.4rem;
         font-weight: 600;
-        border: none;
-        background: linear-gradient(120deg, #4f46e5, #2563eb);
+        border: 1px solid #333333;
+        background: #1a1a1a;
         color: white;
-        box-shadow: 0 12px 30px rgba(37, 99, 235, 0.4);
+        box-shadow: 0 12px 30px rgba(255, 255, 255, 0.1);
     }
 
     .stButton > button:hover {
-        background: linear-gradient(120deg, #4338ca, #1d4ed8);
-        box-shadow: 0 14px 28px rgba(30, 64, 175, 0.55);
+        background: #333333;
+        box-shadow: 0 14px 28px rgba(255, 255, 255, 0.15);
     }
 
     /* Expander styling */
     .streamlit-expanderHeader {
         font-size: 0.9rem;
         font-weight: 600;
+        color: #ffffff !important;
+        background: #1a1a1a !important;
     }
 
     /* Sidebar tweaks */
     [data-testid="stSidebar"] {
-        background: #0f172a;
-        color: #e5e7eb;
+        background: #000000;
+        color: #ffffff;
+        border-right: 1px solid #333333;
     }
     [data-testid="stSidebar"] * {
-        color: #e5e7eb !important;
+        color: #ffffff !important;
+    }
+
+    /* All text elements */
+    p, span, div, label, h1, h2, h3, h4, h5, h6 {
+        color: #ffffff !important;
+    }
+
+    /* Dataframe styling */
+    .dataframe {
+        color: #ffffff !important;
+        background: #1a1a1a !important;
+    }
+
+    /* Metric styling */
+    [data-testid="stMetricValue"] {
+        color: #ffffff !important;
+    }
+
+    [data-testid="stMetricLabel"] {
+        color: #ffffff !important;
+    }
+
+    /* Caption styling */
+    .stCaption {
+        color: #ffffff !important;
     }
     </style>
     """,
@@ -248,9 +290,9 @@ with col1:
             Your ecommerce dataset is connected and ready.  
             Ask questions like:
             <ul>
-              <li>“What was the total revenue in 2024?”</li>
-              <li>“Which product generated the highest profit?”</li>
-              <li>“Top 5 cities by revenue in 2023?”</li>
+              <li>"What was the total revenue in 2024?"</li>
+              <li>"Which product generated the highest profit?"</li>
+              <li>"Top 5 cities by revenue in 2023?"</li>
             </ul>
         </div>
         """,
