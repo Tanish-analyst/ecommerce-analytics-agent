@@ -33,6 +33,37 @@ st.dataframe(df.head())
 # Make global df accessible
 global_df = df
 
+def clean_llm_code(text: str) -> str:
+    """Extract only raw Python code from LLM output."""
+    import re
+    
+    # Remove markdown ``` blocks
+    text = text.replace("```python", "").replace("```", "")
+    
+    # Remove "Here is the code:", "The code is:", etc.
+    patterns = [
+        r"Here is.*?:",
+        r"The code is.*?:",
+        r"Use this code.*?:",
+        r"Corrected code.*?:",
+        r"Improved version.*?:",
+        r"Try this.*?:"
+    ]
+    for p in patterns:
+        text = re.sub(p, "", text, flags=re.IGNORECASE)
+    
+    # Remove JSON wrapper {"code": "..."}
+    if text.strip().startswith("{"):
+        try:
+            import json
+            parsed = json.loads(text)
+            if "code" in parsed:
+                return parsed["code"].strip()
+        except:
+            pass
+    
+    return text.strip()
+
 # -------------------------------
 # 2️⃣ SAFE EXECUTION FUNCTION
 # -------------------------------
@@ -134,7 +165,7 @@ USER QUESTION:
 """
 
     response = llm_basic.invoke(prompt)
-    code = response.content.strip()
+    code = clean_llm_code(response.content.strip())
 
     # Step 2: Execute code
     result = sales_query.invoke({"code": code})
