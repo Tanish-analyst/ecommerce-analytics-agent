@@ -14,6 +14,11 @@ import os
 
 DATA_URL = "https://raw.githubusercontent.com/Tanish-analyst/ecommerce-analytics-agent/main/ecommerce_sales_dataset.xlsx"
 
+langchain_tracing = st.secrets["LANGCHAIN_TRACING_V2"] 
+langsmith_project = st.secrets["LANGSMITH_PROJECT"] 
+langsmith_api_key = st.secrets["LANGSMITH_API_KEY"]
+
+
 @st.cache_data
 def load_data():
     df = pd.read_excel(DATA_URL)
